@@ -7,7 +7,7 @@ export default function RoomList({rooms, setRooms, handleDelete}) {
 
         fetch("https://localhost:7075/api/Rooms")
           .then(response => response.json())
-          .then(data => setRooms(data))
+          .then(jsonData => setRooms(jsonData))
       }
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export default function RoomList({rooms, setRooms, handleDelete}) {
             {rooms.map(({ roomID, name }) => (
                 <li key={roomID}>
                     <div>
-                        <h2>{name}</h2>
+                        <h2 onClick={() => console.log('Clicked!')}>{name}</h2>
                         <button onClick={() => handleDelete(roomID)}>X</button>
                     </div>
                 </li>

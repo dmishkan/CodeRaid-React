@@ -82,6 +82,11 @@ li h2 {
   padding: 4px;
 }
 
+h2:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
 li p {
   margin: 8px;
 }

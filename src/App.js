@@ -1,5 +1,4 @@
 import './App.css';
-import Room from './components/Room';
 import RoomList from './components/RoomList';
 import NewRoom from './components/NewRoom';
 import React, {useState} from 'react';
@@ -42,6 +41,7 @@ const App = () => {
     <>
       <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete}/>
       <NewRoom handleChange={handleChange} handleSubmit={handleSubmit} name={newName}/>
+      <Room></Room>
     </>
   );
 }
