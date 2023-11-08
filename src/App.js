@@ -29,16 +29,19 @@ const App = () => {
       console.log(`${newName} added!`);
     });
 
+    setNewName('');
+  }
 
-    //TODO: POST HTTP REQUEST HERE
-    //CLEAR FORM AFTERWARDS
-    //ERROR HANDLING
-}
+  const handleDelete = (roomID) => {
+
+    fetch(`https://localhost:7075/api/Rooms/${roomID}`, {method: 'DELETE'});
+
+  }
   
   return (
     <>
-      <RoomList rooms={rooms} setRooms={setRooms}/>
-      <NewRoom handleChange={handleChange} handleSubmit={handleSubmit}/>
+      <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete}/>
+      <NewRoom handleChange={handleChange} handleSubmit={handleSubmit} name={newName}/>
     </>
   );
 }

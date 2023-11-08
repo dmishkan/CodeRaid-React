@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-export default function RoomList({rooms, setRooms}) {
+export default function RoomList({rooms, setRooms, handleDelete}) {
 
 
     const fetchUserData = () => {
@@ -20,7 +20,10 @@ export default function RoomList({rooms, setRooms}) {
         <ul>
             {rooms.map(({ roomID, name }) => (
                 <li key={roomID}>
-                    <h2>{name}</h2>
+                    <div>
+                        <h2>{name}</h2>
+                        <button onClick={() => handleDelete(roomID)}>X</button>
+                    </div>
                 </li>
             ))}
         </ul>
