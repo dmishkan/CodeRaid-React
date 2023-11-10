@@ -6,11 +6,11 @@ export default function NewRoom({handleSubmit, handleChange, name}) {
         <form onSubmit={handleSubmit}>
           <input
             name="title"
-            placeholder="Enter new room"
+            placeholder="Create New Room"
             onChange={handleChange}
             value={name}
           />
-        <button type="submit">Create Room</button>
+        {/* <button type="submit">Create Room</button> */}
         </form>
       );
 }

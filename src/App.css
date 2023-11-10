@@ -1,8 +1,29 @@
 html, body {
-	height: 100%;
   background-color: #ffffff;
+  background-image: url('./rust-background.jpg');
+  overflow-y: scroll;
   text-align: center;
   margin: 0;
+}
+
+.List {
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 50%;
+  height: 100%;
+  overflow-y: scroll;
+  padding: .88rem;
+  background-color: rgba(1, 12, 63, 0.7);
+  box-shadow: 0 4px 2px 2px #000000;
+  overflow-y: scroll;
+}
+
+.List::-webkit-scrollbar {
+  display: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 * {
@@ -17,42 +38,41 @@ html, body {
 	padding: 8px;
 }
 
+
 h1 {
   margin: 8px 0;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
 
 input,
 textarea {
-  padding: 5px;
+  margin-top: 10px;
+  text-align: center;
+  width: 20%;
+  padding: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
 }
 
-form button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 5px;
-}
 
 ul {
   list-style: none;
   text-align: center;
-}
-
-ul {
   padding: 0;
 }
 
+
 li {
   background-color: Cornsilk;
-  border: 1px solid BurlyWood;
+  border: 2px solid black;
   border-radius: 5px 2px;
-  margin: 8px 0;
+  margin: auto;
+  margin-bottom: 0px;
+  padding: 5px;
+  width: 90%;
 }
 
 li div {
@@ -71,22 +91,30 @@ li div button {
   border-radius: 5px;
 }
 
-li div button:hover,
-li div button:focus {
-  box-shadow: 0 0 1px black;
+li div button:hover {
+  background-color: rgb(201, 28, 28);
 }
 
 li h2 {
-  background-color: NavajoWhite;
   margin: 0;
   padding: 4px;
 }
 
-h2:hover {
-  transform: scale(1.2);
+li:hover {
+  transform: scale(1.1);
   cursor: pointer;
 }
 
-li p {
-  margin: 8px;
+h1 {
+  margin: 0;
+  padding: .77rem 0;
+  background-color: #010c3f;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.88rem;
+  color: #fff;
+}
+
+h1 .highlight {
+  color: rgb(243, 5, 5);
 }
