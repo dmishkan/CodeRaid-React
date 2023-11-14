@@ -9,7 +9,6 @@ const App = () => {
   const [rooms, setRooms] = useState([]);
   const [newName, setNewName] = useState('');
   const [currentRoom, setCurrentRoom] = useState('');
-  const [error, setError] = useState(null);
 
 
   const handleChange = (event) => {
@@ -17,12 +16,14 @@ const App = () => {
   }
 
   const handleSubmit = async (event) => {
+
+    //handle POST for creating code as well
     event.preventDefault();
 
     const myData = {
       name: newName
     }
-    
+    //Room POST
     const result = await fetch("https://localhost:7075/api/Rooms", {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -33,6 +34,27 @@ const App = () => {
 
     const resultInJson = await result.json();
     setRooms(prev => [...prev, resultInJson]);
+
+    //code POST, maybe create 10 codes
+
+    console.log(resultInJson.roomID)
+
+    const codeData = {
+      roomID: resultInJson.roomID,
+      codeID: 1,
+      value: '0000',
+      isUsed: true
+    }
+
+    const codeResult = await fetch("https://localhost:7075/api/Codes", {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(codeData)
+    });
+
+    const codeResultInJson = await codeResult.json();
+    console.log("POSTED", codeResultInJson)
+
   }
 
   const handleDelete = async (roomID, name) => {
@@ -48,35 +70,16 @@ const App = () => {
     setCurrentRoom({roomID, name});
 
   }
-
-  useEffect(() => {
-    (async () => {
-
-      await fetch("https://localhost:7075/api/Rooms")
-      .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok')
-          }
-      })
-      .catch(err => {
-          setError(err);
-      });
-    })();
-
-  }, []);
-
-
-  if (error) {
-      return <div>Error loading rooms: {error.message}</div>;
-  }  
   
   return (
     <>
       <h1>Code<span className="highlight">Raid</span></h1>
       <NewRoom handleChange={handleChange} handleSubmit={handleSubmit} name={newName}/>
-      <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick}/>
-      
-      {/* <Room currentRoom={currentRoom}/> */}
+      <div className="containers">
+        <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick}/>
+        <Room currentRoom={currentRoom}/>
+      </div>
+
     </>
   );
 }

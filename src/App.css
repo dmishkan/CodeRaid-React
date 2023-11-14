@@ -6,9 +6,15 @@ html, body {
   margin: 0;
 }
 
+.containers {
+  display: flex;
+  justify-content: space-between;
+}
+
 .List {
   margin-top: 10px;
   margin-left: 10px;
+  margin-right: 5px;
   width: 50%;
   height: 100%;
   overflow-y: scroll;
@@ -19,6 +25,23 @@ html, body {
 }
 
 .List::-webkit-scrollbar {
+  display: none;
+}
+
+.Room {
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 10px;
+  width: 50%;
+  height: 100%;
+  overflow-y: scroll;
+  padding: .88rem;
+  background-color: rgba(1, 12, 63, 0.7);
+  box-shadow: 0 4px 2px 2px #000000;
+  overflow-y: scroll;
+}
+
+.Room::-webkit-scrollbar {
   display: none;
 }
 
