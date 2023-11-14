@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
+import URL from "./URL";
 
 export default function RoomList({rooms, setRooms, handleDelete, handleClick}) {
 
 
     const fetchUserData = () => {
 
-        fetch("https://localhost:7075/api/Rooms")
+        fetch(`${URL}/api/Rooms`)
           .then(response => response.json())
           .then(jsonData => setRooms(jsonData))
           

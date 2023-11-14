@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import URL from "./URL";
 
 export default function Room({currentRoom}) {
 
@@ -7,7 +8,7 @@ export default function Room({currentRoom}) {
 
     const fetchUserData = async () => {
 
-        const codeData = await fetch(`https://localhost:7075/api/Codes/${roomID}`, {method: 'GET'});
+        const codeData = await fetch(`${URL}/api/Codes/${roomID}`, {method: 'GET'});
         const codeJson = await codeData.json();
         setCurrentCodeData(codeJson[codeJson.length-1]);
 
@@ -24,7 +25,7 @@ export default function Room({currentRoom}) {
     const handleNextCode = async () => {
 
         //Get the latest code object
-        const code = await fetch(`https://localhost:7075/api/Codes/${roomID}`, {method: 'GET'});
+        const code = await fetch(`${URL}/api/Codes/${roomID}`, {method: 'GET'});
         const codeResult = await code.json();
         const latestCodeObject = codeResult[codeResult.length-1];
 
@@ -41,7 +42,7 @@ export default function Room({currentRoom}) {
         }
 
         //POST it
-        const nextCodeResult = await fetch("https://localhost:7075/api/Codes", {
+        const nextCodeResult = await fetch(`${URL}/api/Codes`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(nextCodeObject)
@@ -49,20 +50,24 @@ export default function Room({currentRoom}) {
         
         //Get the result and render it
         const codeResultInJson = await nextCodeResult.json();
-        console.log("POSTED", codeResultInJson)
+        console.log("POSTED", codeResultInJson);
 
-        setCurrentCodeData(codeResultInJson)
+        setCurrentCodeData(codeResultInJson);
 
     }
 
 
     return (
-        <div className="Room">
-            <h1>{name}</h1>
-            <h2>{String(currentCodeData.value).padStart(4, '0')}</h2>
-            {/* <button onClick={handlePrevious}>Previous</button> */}
-            <button onClick={handleNextCode}>Next</button>
-        </div>
+        <>
+        {currentRoom ? 
+            <div className="Room">
+                <h1>{name}</h1>
+                <h2>{String(currentCodeData.value).padStart(4, '0')}</h2>
+                {/* <button onClick={handlePrevious}>Previous</button> */}
+                <button onClick={handleNextCode}>Next</button>
+            </div> : ''}
+        </>
+  
     );
 
 }

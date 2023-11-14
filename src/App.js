@@ -2,7 +2,8 @@ import './App.css';
 import Room from './components/Room';
 import RoomList from './components/RoomList';
 import NewRoom from './components/NewRoom';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
+import URL from './components/URL';
 
 const App = () => {
 
@@ -24,7 +25,7 @@ const App = () => {
       name: newName
     }
     //Room POST
-    const result = await fetch("https://localhost:7075/api/Rooms", {
+    const result = await fetch(`${URL}/api/Rooms`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(myData)
@@ -46,7 +47,7 @@ const App = () => {
       isUsed: true
     }
 
-    const codeResult = await fetch("https://localhost:7075/api/Codes", {
+    const codeResult = await fetch(`${URL}/api/Codes`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(codeData)
@@ -59,8 +60,21 @@ const App = () => {
 
   const handleDelete = async (roomID, name) => {
 
-    await fetch(`https://localhost:7075/api/Rooms/${roomID}`, {method: 'DELETE'});
+    //Get all codes of room
+    const codesToDelete = await fetch(`${URL}/api/Codes/${roomID}`, {method: 'GET'}).then(response => response.json());
+    console.log(codesToDelete);
+
+    //Go through each and delete one by one
+    for (let i=0; i < codesToDelete.length; i++) {
+      await fetch(`${URL}/api/Codes/${roomID}/${i+1}`, {method: 'DELETE'});
+      console.log('room deleted: ', roomID, i+1);
+    }
+
+    //Delete room itself
+    await fetch(`${URL}/api/Rooms/${roomID}`, {method: 'DELETE'});
+
     setRooms(prev => prev.filter((room) => room.roomID !== roomID));
+    setCurrentRoom('');
 
   }
 
