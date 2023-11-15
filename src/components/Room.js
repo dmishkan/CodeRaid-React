@@ -58,6 +58,20 @@ export default function Room({currentRoom}) {
 
     const handlePreviousCode = async () => {
 
+
+        if (currentCodeData.value > 0) {
+            //Get the latest code object
+            const code = await fetch(`${URL}/api/Codes/${roomID}`, {method: 'GET'});
+            const codeResult = await code.json();
+            const previousCodeData = codeResult[currentCodeData.value-1];
+
+            setCurrentCodeData(previousCodeData);
+            console.log('Went back one to', previousCodeData);
+
+        }
+        
+        
+
     }
 
 
