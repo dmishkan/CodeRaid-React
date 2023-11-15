@@ -10,7 +10,7 @@ const App = () => {
   const [rooms, setRooms] = useState([]);
   const [newName, setNewName] = useState('');
   const [currentRoom, setCurrentRoom] = useState('');
-
+  const [isHighlighted, setIsHighlighted] = useState(true);
 
   const handleChange = (event) => {
     setNewName(event.target.value);
@@ -82,6 +82,7 @@ const App = () => {
     
     console.log(`${name} has been clicked!`);
     setCurrentRoom({roomID, name});
+    setIsHighlighted(!isHighlighted);
 
   }
   
@@ -90,7 +91,7 @@ const App = () => {
       <h1>Code<span className="highlight">Raid</span></h1>
       <NewRoom handleChange={handleChange} handleSubmit={handleSubmit} name={newName}/>
       <div className="containers">
-        <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick}/>
+        <RoomList isHighlighted={isHighlighted} rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick}/>
         <Room currentRoom={currentRoom}/>
       </div>
 

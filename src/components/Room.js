@@ -56,6 +56,10 @@ export default function Room({currentRoom}) {
 
     }
 
+    const handlePreviousCode = async () => {
+
+    }
+
 
     return (
         <>
@@ -63,7 +67,7 @@ export default function Room({currentRoom}) {
             <div className="Room">
                 <h1>{name}</h1>
                 <h2>{String(currentCodeData.value).padStart(4, '0')}</h2>
-                {/* <button onClick={handlePrevious}>Previous</button> */}
+                <button onClick={handlePreviousCode}>Back</button>
                 <button onClick={handleNextCode}>Next</button>
             </div> : ''}
         </>

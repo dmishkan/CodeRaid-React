@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import URL from "./URL";
 
-export default function RoomList({rooms, setRooms, handleDelete, handleClick}) {
+export default function RoomList({isHighlighted ,rooms, setRooms, handleDelete, handleClick}) {
+
 
 
     const fetchUserData = () => {
@@ -23,8 +24,8 @@ export default function RoomList({rooms, setRooms, handleDelete, handleClick}) {
                 {rooms.map(({ roomID, name }) => (
                     <li key={roomID}>
                         <div>
-                            <h2 onClick={() => handleClick(roomID, name)}>{name}</h2>
-                            <button onClick={() => handleDelete(roomID, name)}>X</button>
+                            <button className = "n" onClick={() => handleClick(roomID, name)}>{name}</button>
+                            <button className = "x" onClick={() => handleDelete(roomID, name)}>X</button>
                         </div>
                     </li>
                 ))}
