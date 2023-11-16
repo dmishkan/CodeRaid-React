@@ -12,7 +12,6 @@ const App = () => {
   const [rooms, setRooms] = useState([]);
   const [newName, setNewName] = useState('');
   const [currentRoom, setCurrentRoom] = useState('');
-  const [isHighlighted, setIsHighlighted] = useState(true);
 
   const handleChange = (event) => {
 
@@ -96,8 +95,8 @@ const App = () => {
 
   const handleClick = (roomID, name) => {
     
+    //Update state variable for RoomList and Room modules
     setCurrentRoom({roomID, name});
-    setIsHighlighted(!isHighlighted);
     console.log(`${name} has been clicked!`);
 
   }
@@ -108,7 +107,7 @@ const App = () => {
       <h1>Code<span className="highlight">Raid</span></h1>
       <NewRoom handleChange={handleChange} handleSubmit={handleSubmit} name={newName}/>
       <div className="containers">
-        <RoomList isHighlighted={isHighlighted} rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick}/>
+        <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick}/>
         <Room currentRoom={currentRoom}/>
       </div>
 

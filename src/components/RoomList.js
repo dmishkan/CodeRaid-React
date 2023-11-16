@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import URL from "./URL";
 
-export default function RoomList({isHighlighted ,rooms, setRooms, handleDelete, handleClick}) {
+export default function RoomList({rooms, setRooms, handleDelete, handleClick}) {
 
     const fetchUserData = async () => {
 
