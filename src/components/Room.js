@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import URL from "./URL";
+import combinations from "./FourDigits";
 
 export default function Room({currentRoom}) {
 
@@ -29,23 +30,22 @@ export default function Room({currentRoom}) {
 
     const handleNextCode = async () => {
 
-        //Don't run if value is 9999 or above
-        if (currentCodeData.value >= 9999) { return; }
+        //Don't run if we're on the last code
+        if (currentCodeData.codeID >= 10000) { return; }
 
         //Get the latest code object
         const code = await fetch(`${URL}/api/Codes/${roomID}`, {method: 'GET'});
         const codeResult = await code.json();
         const latestCodeObject = codeResult[codeResult.length-1];
 
-        //get the two variables we need (codeID and value)
+        //get latest index
         const latestCodeId = latestCodeObject.codeID;
-        const latestCodeValue = latestCodeObject.value;
 
-        //put it into new object to be POSTed 
+        //create object with info, use index to get the next four digit combination
         const nextCodeObject = {
             roomID: roomID,
             codeID: latestCodeId+1,
-            value: latestCodeValue+1,
+            value: combinations[latestCodeId],
             isUsed: true
         }
 
@@ -69,13 +69,15 @@ export default function Room({currentRoom}) {
 
     const handlePreviousCode = async () => {
 
-        //Don't run if value is 0 or below
-        if (currentCodeData.value <= 0) { return; }
+        //Don't run if we're on the first code
+        if (currentCodeData.codeID <= 1) { return; }
 
         //Otherwise, get the current code object and index - 1 to get the previous code object
         const code = await fetch(`${URL}/api/Codes/${roomID}`, {method: 'GET'});
         const codeResult = await code.json();
-        const previousCodeData = codeResult[currentCodeData.value-1];
+        
+        //Get previous code object by index-2 because codeID was created with index 1 originally
+        const previousCodeData = codeResult[currentCodeData.codeID-2];
 
         //Set state variable and change color
         setCurrentCodeData(previousCodeData);

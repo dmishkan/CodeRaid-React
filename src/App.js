@@ -57,7 +57,7 @@ const App = () => {
     const codeData = {
       roomID: resultInJson.roomID,
       codeID: 1,
-      value: '0000',
+      value: 1234,
       isUsed: true
     }
 
@@ -75,6 +75,10 @@ const App = () => {
   }
 
   const handleDelete = async (roomID, name) => {
+
+    const isConfirmed = window.confirm('Are you sure you want to delete this room and all of its associated codes?');
+
+    if (!isConfirmed) {return;}
 
     //Get all codes of room
     const codesToDelete = await fetch(`${URL}/api/Codes/${roomID}`, {method: 'GET'}).then(response => response.json());
