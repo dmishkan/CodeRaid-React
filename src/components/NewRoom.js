@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 
 export default function NewRoom({handleSubmit, handleChange, name}) {
 
+    //Form render
     return (
         <form onSubmit={handleSubmit}>
           <input
@@ -10,7 +11,6 @@ export default function NewRoom({handleSubmit, handleChange, name}) {
             onChange={handleChange}
             value={name}
           />
-        {/* <button type="submit">Create Room</button> */}
         </form>
       );
 }

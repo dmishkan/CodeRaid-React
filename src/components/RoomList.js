@@ -3,20 +3,23 @@ import URL from "./URL";
 
 export default function RoomList({isHighlighted ,rooms, setRooms, handleDelete, handleClick}) {
 
+    const fetchUserData = async () => {
 
-
-    const fetchUserData = () => {
-
-        fetch(`${URL}/api/Rooms`)
+        //Fetch rooms and set them to state variable
+        await fetch(`${URL}/api/Rooms`)
           .then(response => response.json())
           .then(jsonData => setRooms(jsonData))
           
       }
 
     useEffect(() => {
+
+        //Fetch only once after initial render
         fetchUserData();
+
     }, []);
 
+    //Render room list from rooms state variable, destructuring for needed keys and values
     return (
         <div className='List'>
             <h1>Rooms</h1>

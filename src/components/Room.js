@@ -8,21 +8,29 @@ export default function Room({currentRoom}) {
 
     const fetchUserData = async () => {
 
+        //Fetch json array and set state variable to the latest code object
         const codeData = await fetch(`${URL}/api/Codes/${roomID}`, {method: 'GET'});
         const codeJson = await codeData.json();
         setCurrentCodeData(codeJson[codeJson.length-1]);
+        document.getElementById('code').style.color = "white";
 
     }
 
     useEffect(() => {
+
+        //Fetch data on room selection
         console.log(roomID, name);
         if (currentRoom !== '') {
             fetchUserData();
         }
+
     }, [currentRoom]);
 
 
     const handleNextCode = async () => {
+
+        //Don't run if value is 9999 or above
+        if (currentCodeData.value >= 9999) { return; }
 
         //Get the latest code object
         const code = await fetch(`${URL}/api/Codes/${roomID}`, {method: 'GET'});
@@ -52,38 +60,40 @@ export default function Room({currentRoom}) {
         const codeResultInJson = await nextCodeResult.json();
         console.log("POSTED", codeResultInJson);
 
+        //Set state variable and change color
         setCurrentCodeData(codeResultInJson);
+        document.getElementById('code').style.color = "#5CEA0A";
+
 
     }
 
     const handlePreviousCode = async () => {
 
+        //Don't run if value is 0 or below
+        if (currentCodeData.value <= 0) { return; }
 
-        if (currentCodeData.value > 0) {
-            //Get the latest code object
-            const code = await fetch(`${URL}/api/Codes/${roomID}`, {method: 'GET'});
-            const codeResult = await code.json();
-            const previousCodeData = codeResult[currentCodeData.value-1];
+        //Otherwise, get the current code object and index - 1 to get the previous code object
+        const code = await fetch(`${URL}/api/Codes/${roomID}`, {method: 'GET'});
+        const codeResult = await code.json();
+        const previousCodeData = codeResult[currentCodeData.value-1];
 
-            setCurrentCodeData(previousCodeData);
-            console.log('Went back one to', previousCodeData);
-
-        }
-        
-        
+        //Set state variable and change color
+        setCurrentCodeData(previousCodeData);
+        document.getElementById('code').style.color = "red";
+        console.log('Went back one to', previousCodeData);
 
     }
 
-
+    //Only render room if a room is selected
     return (
         <>
-        {currentRoom ? 
-            <div className="Room">
-                <h1>{name}</h1>
-                <h2>{String(currentCodeData.value).padStart(4, '0')}</h2>
-                <button onClick={handlePreviousCode}>Back</button>
-                <button onClick={handleNextCode}>Next</button>
-            </div> : ''}
+            {currentRoom ? 
+                <div className="Room">
+                    <h1>{name}</h1>
+                    <h2 id="code">{String(currentCodeData.value).padStart(4, '0')}</h2>
+                    <button onClick={handlePreviousCode}>Back</button>
+                    <button onClick={handleNextCode}>Next</button>
+                </div> : ''}
         </>
   
     );
