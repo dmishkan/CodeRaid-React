@@ -75,7 +75,7 @@ export default function Room({currentRoom}) {
         //Otherwise, get the current code object and index - 1 to get the previous code object
         const code = await fetch(`${URL}/api/Codes/${roomID}`, {method: 'GET'});
         const codeResult = await code.json();
-        
+
         //Get previous code object by index-2 because codeID was created with index 1 originally
         const previousCodeData = codeResult[currentCodeData.codeID-2];
 
@@ -95,6 +95,7 @@ export default function Room({currentRoom}) {
                     <h2 id="code">{String(currentCodeData.value).padStart(4, '0')}</h2>
                     <button onClick={handlePreviousCode}>Back</button>
                     <button onClick={handleNextCode}>Next</button>
+                    <button type="button" class="btn btn-primary">Primary</button>
                 </div> : ''}
         </>
   

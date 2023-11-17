@@ -1,6 +1,6 @@
 //Daniel Mishkanian
 
-import './App.css';
+import './css/custom.min.css';
 import Room from './components/Room';
 import RoomList from './components/RoomList';
 import NewRoom from './components/NewRoom';
@@ -108,6 +108,7 @@ const App = () => {
   //Main page render - Header, Input Form, Room List, Code Container
   return (
     <>
+    
       <h1>Code<span className="highlight">Raid</span></h1>
       <NewRoom handleChange={handleChange} handleSubmit={handleSubmit} name={newName}/>
       <div className="containers">
