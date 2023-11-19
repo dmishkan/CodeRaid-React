@@ -4,7 +4,7 @@ import './App.css';
 import Room from './components/Room';
 import RoomList from './components/RoomList';
 import NewRoom from './components/NewRoom';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import URL from './components/URL';
 
 const App = () => {
@@ -12,6 +12,36 @@ const App = () => {
   const [rooms, setRooms] = useState([]);
   const [newName, setNewName] = useState('');
   const [currentRoom, setCurrentRoom] = useState('');
+  const [isConnected, setIsConnected] = useState(false);
+
+  useEffect(() => {
+
+    async function getConnected() {
+
+      try {
+        console.log("OLEK");
+        const response = await fetch(`${URL}/api/Rooms`);
+    
+        if (response.ok) {
+          setIsConnected(true);
+          console.log("murt");
+        } else {
+          setIsConnected(false);
+          console.log("YAHOO");
+        }
+    
+      } catch (error) {
+        console.error('Error connecting to API:', error);
+        setIsConnected(false);
+      } 
+
+    }
+
+    getConnected();
+    
+  })
+
+
 
   const handleChange = (event) => {
 
@@ -108,13 +138,15 @@ const App = () => {
   //Main page render - Header, Input Form, Room List, Code Container
   return (
     <>
-      <h1>Code<span className="highlight">Raid</span></h1>
-      <NewRoom handleChange={handleChange} handleSubmit={handleSubmit} name={newName}/>
-      <div className="containers">
-        <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick}/>
-        <Room currentRoom={currentRoom}/>
-      </div>
-
+      {isConnected ? 
+            <div>
+              <h1>Code<span className="highlight">Raid</span></h1>
+              <NewRoom handleChange={handleChange} handleSubmit={handleSubmit} name={newName}/>
+              <div className="containers">
+                <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick}/>
+                <Room currentRoom={currentRoom}/>
+              </div>
+            </div> : <h1>Could not connect to API</h1>}
     </>
   );
 }
