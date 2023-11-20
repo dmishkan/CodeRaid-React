@@ -16,7 +16,7 @@ export default function RoomList({rooms, setRooms, handleDelete, handleClick}) {
 
         //Fetch only once after initial render
         fetchUserData();
-
+        
     }, []);
 
     //Render room list from rooms state variable, destructuring for needed keys and values

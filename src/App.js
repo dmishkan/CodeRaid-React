@@ -143,8 +143,8 @@ const App = () => {
               <h1>Code<span className="highlight">Raid</span></h1>
               <NewRoom handleChange={handleChange} handleSubmit={handleSubmit} name={newName}/>
               <div className="containers">
-                <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick}/>
-                <Room currentRoom={currentRoom}/>
+                <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick} isConnected={isConnected}/>
+                <Room currentRoom={currentRoom} isConnected={isConnected}/>
               </div>
             </div> : <h1>Could not connect to API</h1>}
     </>
