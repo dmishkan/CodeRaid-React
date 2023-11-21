@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import URL from "./URL";
 
 export default function RoomList({rooms, setRooms, handleDelete, handleClick}) {

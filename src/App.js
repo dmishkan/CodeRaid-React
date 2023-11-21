@@ -4,14 +4,39 @@ import './css/custom.min.css';
 import Room from './components/Room';
 import RoomList from './components/RoomList';
 import NewRoom from './components/NewRoom';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import URL from './components/URL';
+// import './scss/boostrap.min.css';
 
 const App = () => {
 
   const [rooms, setRooms] = useState([]);
   const [newName, setNewName] = useState('');
   const [currentRoom, setCurrentRoom] = useState('');
+  const [isConnected, setIsConnected] = useState(false);
+
+  useEffect(() => {
+
+    //error handling for api connection
+
+    async function getConnected() {
+
+      try {
+        const response = await fetch(`${URL}/api/Rooms`);
+    
+        if (!response.ok) {setIsConnected(false) } 
+        else { setIsConnected(true) }
+    
+      } catch (error) {
+        console.error('Error connecting to API:', error);
+        setIsConnected(false);
+      } 
+
+    }
+
+    getConnected();
+    
+  })
 
   const handleChange = (event) => {
 
