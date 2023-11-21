@@ -6,7 +6,6 @@ import RoomList from './components/RoomList';
 import NewRoom from './components/NewRoom';
 import React, {useEffect, useState} from 'react';
 import URL from './components/URL';
-
 const App = () => {
 
   const [rooms, setRooms] = useState([]);
@@ -16,19 +15,15 @@ const App = () => {
 
   useEffect(() => {
 
+    //error handling for api connection
+
     async function getConnected() {
 
       try {
-        console.log("OLEK");
         const response = await fetch(`${URL}/api/Rooms`);
     
-        if (response.ok) {
-          setIsConnected(true);
-          console.log("murt");
-        } else {
-          setIsConnected(false);
-          console.log("YAHOO");
-        }
+        if (!response.ok) {setIsConnected(false) } 
+        else { setIsConnected(true) }
     
       } catch (error) {
         console.error('Error connecting to API:', error);
