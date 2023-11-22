@@ -4,9 +4,8 @@ import './css/custom.min.css';
 import Room from './components/Room';
 import RoomList from './components/RoomList';
 import NewRoom from './components/NewRoom';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import URL from './components/URL';
-// import './scss/boostrap.min.css';
 
 const App = () => {
 
@@ -23,19 +22,19 @@ const App = () => {
 
       try {
         const response = await fetch(`${URL}/api/Rooms`);
-    
-        if (!response.ok) {setIsConnected(false) } 
+
+        if (!response.ok) { setIsConnected(false) }
         else { setIsConnected(true) }
-    
+
       } catch (error) {
         console.error('Error connecting to API:', error);
         setIsConnected(false);
-      } 
+      }
 
     }
 
     getConnected();
-    
+
   })
 
   const handleChange = (event) => {
@@ -51,7 +50,7 @@ const App = () => {
     event.preventDefault();
 
     //Check for duplicate names
-    for (let i=0; i < rooms.length; i++) {
+    for (let i = 0; i < rooms.length; i++) {
       if (rooms[i].name === newName) {
         alert("Duplicate room name found. Try again with a different name.");
         return;
@@ -62,11 +61,11 @@ const App = () => {
     const myData = {
       name: newName
     }
-    
+
     //Room POST
     const result = await fetch(`${URL}/api/Rooms`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(myData)
     })
 
@@ -89,7 +88,7 @@ const App = () => {
     //Fetch data, POST, and insert object
     const codeResult = await fetch(`${URL}/api/Codes`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(codeData)
     });
 
@@ -103,19 +102,19 @@ const App = () => {
 
     const isConfirmed = window.confirm('Are you sure you want to delete this room and all of its associated codes?');
 
-    if (!isConfirmed) {return;}
+    if (!isConfirmed) { return; }
 
     //Get all codes of room
-    const codesToDelete = await fetch(`${URL}/api/Codes/${roomID}`, {method: 'GET'}).then(response => response.json());
+    const codesToDelete = await fetch(`${URL}/api/Codes/${roomID}`, { method: 'GET' }).then(response => response.json());
 
     //Go through each and delete one by one
-    for (let i=0; i < codesToDelete.length; i++) {
-      await fetch(`${URL}/api/Codes/${roomID}/${i+1}`, {method: 'DELETE'});
-      console.log('Code Deleted: ', roomID, i+1);
+    for (let i = 0; i < codesToDelete.length; i++) {
+      await fetch(`${URL}/api/Codes/${roomID}/${i + 1}`, { method: 'DELETE' });
+      console.log('Code Deleted: ', roomID, i + 1);
     }
 
     //Delete room from API and state variables
-    await fetch(`${URL}/api/Rooms/${roomID}`, {method: 'DELETE'});
+    await fetch(`${URL}/api/Rooms/${roomID}`, { method: 'DELETE' });
     setRooms(prev => prev.filter((room) => room.roomID !== roomID));
     setCurrentRoom('');
     console.log('Room Deleted: ', roomID);
@@ -123,9 +122,9 @@ const App = () => {
   }
 
   const handleClick = (roomID, name) => {
-    
+
     //Update state variable for RoomList and Room modules
-    setCurrentRoom({roomID, name});
+    setCurrentRoom({ roomID, name });
     console.log(`${name} has been clicked!`);
 
   }
@@ -133,14 +132,19 @@ const App = () => {
   //Main page render - Header, Input Form, Room List, Code Container
   return (
     <>
-    
-      <h1>Code<span className="highlight">Raid</span></h1>
-      <NewRoom handleChange={handleChange} handleSubmit={handleSubmit} name={newName}/>
-      <div className="containers">
-        <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick}/>
-        <Room currentRoom={currentRoom}/>
-      </div>
-
+      {isConnected ?
+        <div>
+          <nav class="navbar navbar-expand-sm" id="mainNavbar">
+            <div class="container justify-content-center">
+              <h1 class="navbar-brand mb-0">Code<span className="highlight">Raid</span></h1>
+            </div>
+          </nav>
+          <NewRoom handleChange={handleChange} handleSubmit={handleSubmit} name={newName} />
+          <div className="containers">
+            <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick} isConnected={isConnected} />
+            <Room currentRoom={currentRoom} isConnected={isConnected} />
+          </div>
+        </div> : <h1>Could not connect to API</h1>}
     </>
   );
 }
