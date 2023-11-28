@@ -129,7 +129,7 @@ const App = () => {
 
   }
 
-  //Main page render - Header, Input Form, Room List, Code Container
+  //Main page render (Bootstrap)- Header, Input Form, Room List, Code Container
   return (
     <>
       {isConnected ?
@@ -142,7 +142,7 @@ const App = () => {
 
           <div class="container text-center"><NewRoom handleChange={handleChange} handleSubmit={handleSubmit} name={newName} /></div>
           
-          <div class="container">
+          <div class="container-fluid">
             <div class="row">
               <div class="col">
                 <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick} isConnected={isConnected} />
