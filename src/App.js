@@ -136,14 +136,23 @@ const App = () => {
         <div>
           <nav class="navbar navbar-expand-sm" id="mainNavbar">
             <div class="container justify-content-center">
-              <h1 class="navbar-brand mb-0">Code<span className="highlight">Raid</span></h1>
+              <h1>Code<span className="highlight">Raid</span></h1>
             </div>
           </nav>
-          <NewRoom handleChange={handleChange} handleSubmit={handleSubmit} name={newName} />
-          <div className="containers">
-            <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick} isConnected={isConnected} />
-            <Room currentRoom={currentRoom} isConnected={isConnected} />
+
+          <div class="container text-center"><NewRoom handleChange={handleChange} handleSubmit={handleSubmit} name={newName} /></div>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <RoomList rooms={rooms} setRooms={setRooms} handleDelete={handleDelete} handleClick={handleClick} isConnected={isConnected} />
+              </div>
+              <div class="col">
+                <Room currentRoom={currentRoom} isConnected={isConnected} />
+              </div>
+            </div>
           </div>
+
         </div> : <h1>Could not connect to API</h1>}
     </>
   );

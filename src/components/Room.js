@@ -95,7 +95,6 @@ export default function Room({currentRoom}) {
                     <h2 id="code">{String(currentCodeData.value).padStart(4, '0')}</h2>
                     <button onClick={handlePreviousCode}>Back</button>
                     <button onClick={handleNextCode}>Next</button>
-                    <button type="button" class="btn btn-primary">Primary</button>
                 </div> : ''}
         </>
   
