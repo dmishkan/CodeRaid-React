@@ -18,8 +18,6 @@ Ever wanted to break into a base as quickly and efficiently as possible? Now you
 
 
 
-### Demo
+### Demo (YouTube Link)
 
-[![IMAGE ALT TEXT HERE](coderaid.png)](https://www.youtube.com/watch?v=NXH6XbnU_-Q)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/NXH6XbnU_-Q?si=WPq13zZSvAaV2br2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[![IMAGE ALT TEXT HERE](coderaidplaybutton.png)](https://www.youtube.com/watch?v=NXH6XbnU_-Q)
