@@ -14,8 +14,21 @@ Ever wanted to break into a base as quickly and efficiently as possible? Now you
 - If that didn't work, click 'Next' to go to the next most popular 4-digit combination that has not been seen yet
 - If you'd 'like to see previous codes, simply click 'Back'
 
+### Tech stack
+
+- Front-end: React.js, Bootstrap, Node.js
+- Back-end: ASP.NET C# (REST API), SQL 
+
 ### How It Works
 
+If set up correctly, the front-end (React website) and back-end  (API + database) should be running on two separate servers, respectively. The website calls the backend for any extraction, interaction, or storage of user data. 
+
+- With the creation, deletion, and use of a room and its codes, the user (front-end: React) is constantly interacting with the API methods (back-end: C#, SQL)
+- Creating a room calls the custom-made Room POST API method which stores the room in a database
+- Deleting a room calls the custom-made Room DELETE API method which deletes the room from the database
+- Clicking on the room uses the Code GET API method that extracts info about the room and its codes and displays this information on-screen
+- Clicking 'Next' calls the Code POST API method to create the next most popular code and displays it on-screen
+- Clicking 'Back' calls the Code GET API method to extract the previous code and displays it on-screen
 
 
 ### Demo (YouTube Link)
