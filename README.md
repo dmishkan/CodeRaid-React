@@ -4,7 +4,7 @@ A fast and convenient way to have access to the 10,000 most well-know 4-digit co
 
 ## Description
 
-Ever wanted to break into a base as quickly and efficiently as possible? Now you can! Simply grab some of your favorite friends and create a room with the name of your choice. If every user is connected to the same server, all of your friends should be able to see the room you created. Now all you guys have to do is enter in the code that is on screen to the base you're attempting to raid. Every 'Next' button click (no matter the user) should generate the next latest, most popular code. This prevents entering any duplicate codes and speeds up the raiding process. Have fun!
+Ever wanted to break into a base as quickly and efficiently as possible? Now you can! Simply grab some of your favorite friends and create a room with the name of your choice. If every user is connected to the same server, all of your friends should be able to see the room you created. Now all you guys have to do is enter in the code that is on screen to the base you're attempting to raid. Every 'Next' button click (no matter the user) should generate the next latest, most popular code. This prevents entering any duplicate codes and speeds up the raiding process. If you have to get off for whatever reason, don't worry, we save your progress! Have fun!
 
 ### Instructions
 
@@ -12,7 +12,7 @@ Ever wanted to break into a base as quickly and efficiently as possible? Now you
 - In the 'Rooms' box, select the room you just made or one that has already been created
 - You should now see the latest code on-screen: try using it to break into the enemy base!
 - If that didn't work, click 'Next' to go to the next most popular 4-digit combination that has not been seen yet
-- If you'd 'like to see previous codes, simply click 'Back'
+- If you'd like to see previous codes, simply click 'Back'
 
 ### Tech stack
 
@@ -21,7 +21,7 @@ Ever wanted to break into a base as quickly and efficiently as possible? Now you
 
 ### How It Works
 
-If set up correctly, the front-end (React website) and back-end  (API + database) should be running on two separate servers, respectively. The website calls the backend for any extraction, interaction, or storage of user data. 
+If set up correctly, the front-end (React website) and back-end  (API + database) should be running on two separate servers, respectively. The website calls the backend for any extraction, interaction, or storage of user data. This allows the user to resume where he/she left off from the session previous.
 
 - With the creation, deletion, and use of a room and its codes, the user (front-end: React) is constantly interacting with the API methods (back-end: C#, SQL)
 - Creating a room calls the custom-made Room POST API method which stores the room in a database
