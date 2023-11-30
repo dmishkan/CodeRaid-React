@@ -20,4 +20,4 @@ Ever wanted to break into a base as quickly and efficiently as possible? Now you
 
 ### Demo (YouTube Link)
 
-[![IMAGE ALT TEXT HERE](coderaidplaybutton.png)](https://www.youtube.com/watch?v=NXH6XbnU_-Q)
+[![YouTube Video](coderaidplaybutton.png)](https://www.youtube.com/watch?v=NXH6XbnU_-Q){:target="_blank"}
