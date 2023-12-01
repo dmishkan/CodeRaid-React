@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Code Raid v1.0.0
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A fast and convenient way to have access to the 10,000 most well-know 4-digit combinations used to break into any base in Facepunch Studio's popular multiplayer survival video game, Rust. 
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+Ever wanted to break into a base as quickly and efficiently as possible? Now you can! Simply grab some of your favorite friends and create a room with the name of your choice. If every user is connected to the same server, all of your friends should be able to see the room you created. Now all you guys have to do is enter in the code that is on screen to the base you're attempting to raid. Every 'Next' button click (no matter the user) should generate the next latest, most popular code. This prevents entering any duplicate codes and speeds up the raiding process. If you have to get off for whatever reason, don't worry, we save your progress! Have fun!
 
-### `npm start`
+### Instructions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- In the text area, enter a name for the room to-be
+- In the 'Rooms' box, select the room you just made or one that has already been created
+- You should now see the latest code on-screen: try using it to break into the enemy base!
+- If that didn't work, click 'Next' to go to the next most popular 4-digit combination that has not been seen yet
+- If you'd like to see previous codes, simply click 'Back'
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Tech stack
 
-### `npm test`
+- Front-end: React.js, Bootstrap, Node.js
+- Back-end: ASP.NET C# (REST API), SQL 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### How It Works
 
-### `npm run build`
+If set up correctly, the front-end (React website) and back-end  (API + database) should be running on two separate servers, respectively. The website calls the backend for any extraction, interaction, or storage of user data. This allows the user to resume where he/she left off from the session previous.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- With the creation, deletion, and use of a room and its codes, the user (front-end: React) is constantly interacting with the API methods (back-end: C#, SQL)
+- Creating a room calls the custom-made Room POST API method which stores the room in a database
+- Deleting a room calls the custom-made Room DELETE API method which deletes the room from the database
+- Clicking on the room uses the Code GET API method that extracts info about the room and its codes and displays this information on-screen
+- Clicking 'Next' calls the Code POST API method to create the next most popular code and displays it on-screen
+- Clicking 'Back' calls the Code GET API method to extract the previous code and displays it on-screen
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Demo (YouTube Link)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[![YouTube Video](coderaidplaybutton.png)](https://www.youtube.com/watch?v=_EH7bb__Ka0)
